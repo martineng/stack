@@ -10,61 +10,38 @@ import java.util.Scanner; // Get the input
  */
 public class StackTrial
 {
-    static String[] stackArray = new String[10];
-    static int top = 0, maxSize = 10;
-    
-    
+   
     public static void main(String[] args)
     {   
         Scanner inputReader = new Scanner(System.in);
         String myString;
+        TheStack stack01 = new TheStack();
         
-        do
+        try
         {
-            System.out.print("Please enter the " + (top + 1) + " strings\n");
-            myString = inputReader.next();
-            push(myString);
-        } while (!(isFull()));
-        
-        System.out.print("\nThe top is: " + top + "\n");
-        System.out.print("The top item is : " + peek() + "\n\n");
-        
-        System.out.print("Removing the top item\n");
-        pop();
-        
-        System.out.print("The top is: " + top + "\n");
-        System.out.print("The top item is now: " + peek() + "\n");
-        
-    }
+            do
+            {
+                System.out.print("Please enter the " + (stack01.getTop() + 1) + " strings\n");
+                myString = inputReader.next();
+                stack01.push(myString);
+            } while (!(stack01.isFull()));
+
+            System.out.print("\nThe top is: " + stack01.getTop() + "\n");
+            System.out.print("The top item is : " + stack01.peek() + "\n\n");
+
+            System.out.print("Removing the top item\n");
+            stack01.pop();
+
+            System.out.print("The top is: " + stack01.getTop() + "\n");
+            System.out.print("The top item is now: " + stack01.peek() + "\n\n");
+
+            System.out.print("Sum of String: " + stack01.outTotalStringAccending() + "\n");
+            System.out.print("Reverse of Sum of String: " + stack01.outTotalStringDeccending() + "\n");
+        }// END try
+        catch (Exception exceptionMsg)
+        {
+            System.err.println(exceptionMsg);
+        }// END catch
+    }// END main
     
-    // Insert the object at the top
-    public static void push(String inString)
-    {
-        stackArray[++top] = inString;
-    }
-    
-    //Take item from the top
-    public static String pop()
-    {
-        return stackArray[top--];
-    }
-    
-    //Peek at the top stack
-    public static String peek()
-    {
-        return stackArray[top];
-    }
-    
-    // true if stack is empty
-    public static boolean isEmpty()
-    {
-        return (top == -1);
-    }
-    
-    // true if stack is full
-    public static boolean isFull()
-    {
-        return (top == maxSize - 1);
-    }
-    
-}
+}// END class
